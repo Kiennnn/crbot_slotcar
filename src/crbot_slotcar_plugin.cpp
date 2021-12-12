@@ -95,14 +95,14 @@ class CrbotSlotcarPlugin : public ModelPlugin
         double x_vel, y_vel, yaw_vel;
         angle_to_turn = atan2(goal_y - this->start_pose.y, goal_x - this->start_pose.x);
 
-        if (goal_y - 0.01 <= this->model->WorldPose().Y() && this->model->WorldPose().Y() < goal_y + 0.01 &&
-            goal_x - 0.01 <= this->model->WorldPose().X() && this->model->WorldPose().X() < goal_x + 0.01) {
+        if (goal_y - 0.1 <= this->start_pose.y && this->start_pose.y <= goal_y + 0.1 &&
+            goal_x - 0.1 <= this->current_pose.x && this->current_pose.x <= goal_x + 0.1) {
             yaw_vel = 0;
             x_vel = 0;
             y_vel = 0;
             this->UpdateStartPose();
         } else {
-            if (abs(angle_to_turn - this->model->WorldPose().Yaw()) > 0.01) {
+            if (abs(angle_to_turn - this->current_pose.theta) >= 0.01) {
                 yaw_vel = 1;
                 x_vel = 0;
                 y_vel = 0;
