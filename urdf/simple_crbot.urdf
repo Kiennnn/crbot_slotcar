@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<robot name="crbot">
+    <link name="base_footprint"/>
+
+    <joint name="base_footprint_joint" type="fixed">
+        <origin xyz="0 0 0.085" rpy="0 0 0"/>
+        <parent link="base_footprint"/>
+        <child link="base_link"/>
+    </joint>
+
+    <link name="base_link">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <mass value="12" />
+            <inertia ixx="0.2789" ixy="0" ixz="0"
+                     iyy="1.94" iyz="0" izz="1.7189" />
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="1.3 0.5 0.17"/>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="1.3 0.5 0.17"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <gazebo>
+        <plugin name="crbot_slotcar" filename="libcrbot_slotcar.so">
+        </plugin>
+    </gazebo>
+</robot>
